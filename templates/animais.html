@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerenciar Animais - LarPet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1>Gerenciar Animais</h1>
+        <!-- ✅ Botão para adicionar novo animal -->
+        <button onclick="showAddForm()" class="btn btn-primary">
+            + Adicionar Animal
+        </button>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- 🐾 Formulário de adicionar/editar animal -->
+    <div id="form-container" style="display: none;">
+        <h3 id="form-title">Cadastrar Novo Animal</h3>
+        <form id="animal-form" action="{{ url_for('add_animal') }}" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label>Nome:</label>
+                <input type="text" name="nome" id="nome" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Espécie:</label>
+                <input type="text" name="especie" id="especie" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Raça:</label>
+                <input type="text" name="raca" id="raca" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Idade:</label>
+                <input type="text" name="idade" id="idade" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Localização:</label>
+                <input type="text" name="localizacao" id="localizacao" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Vacinado:</label>
+                <input type="text" name="vacinacao" id="vacinacao" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Status:</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="disponível">Disponível</option>
+                    <option value="adotado">Adotado</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Foto:</label>
+                <input type="file" name="foto" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Salvar Animal</button>
+            <button type="button" class="btn btn-secondary" onclick="hideAddForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- 🐶 Lista dos animais -->
+    <div class="row mt-4">
+        {% for animal in animais %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                {% if animal.foto %}
+                <img src="{{ url_for('static', filename='uploads/' + animal.foto) }}" class="card-img-top" alt="{{ animal.nome }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.nome }}</h5>
+                    <p class="card-text">{{ animal.especie }} - {{ animal.raca or 'Sem raça definida' }}</p>
+                    <p class="card-text"><strong>Idade:</strong> {{ animal.idade }}</p>
+                    <p class="card-text"><strong>Localização:</strong> {{ animal.localizacao }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ animal.status }}</p>
+                    <p class="card-text"><strong>Vacinado:</strong> {{ animal.vacinacao }}</p>
+                    <a href="{{ url_for('edit_animal', id=animal.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ url_for('delete_animal', id=animal.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este animal?')">Excluir</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p>Nenhum animal cadastrado ainda.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ✅ Script para mostrar/esconder formulário -->
+<script>
+function showAddForm() {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-title').textContent = 'Cadastrar Novo Animal';
+    document.getElementById('animal-form').action = "{{ url_for('add_animal') }}";
+}
+
+function hideAddForm() {
+    document.getElementById('form-container').style.display = 'none';
+}
+</script>
+
+<!-- ✅ Script de edição -->
+{% if animal_edit %}
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const formContainer = document.getElementById('form-container');
+    const formTitle = document.getElementById('form-title');
+    const animalForm = document.getElementById('animal-form');
+
+    if (formContainer && formTitle && animalForm) {
+        formContainer.style.display = 'block';
+        formTitle.textContent = 'Editar Animal';
+        animalForm.action = "{{ url_for('edit_animal', id=animal_edit.id) }}";
+
+        const campos = {
+            nome: '{{ animal_edit.nome | escapejs }}',
+            especie: '{{ animal_edit.especie | escapejs }}',
+            raca: '{{ animal_edit.raca or "" | escapejs }}',
+            idade: '{{ animal_edit.idade or "" | escapejs }}',
+            localizacao: '{{ animal_edit.localizacao or "" | escapejs }}',
+            status: '{{ animal_edit.status | escapejs }}',
+            vacinacao: '{{ animal_edit.vacinacao or "" | escapejs }}'
+        };
+
+        for (let id in campos) {
+            const el = document.getElementById(id);
+            if (el) el.value = campos[id];
+        }
+    }
+});
+</script>
+{% endif %}
+
+{% endblock %}

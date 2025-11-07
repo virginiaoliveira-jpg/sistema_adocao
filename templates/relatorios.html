@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Relatórios - LarPet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1>Relatórios e Estatísticas</h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">🐾</div>
+            <div class="stat-value">{{ total_animais }}</div>
+            <div class="stat-label">Total de Animais</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value">{{ animais_disponiveis }}</div>
+            <div class="stat-label">Disponíveis</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">❤️</div>
+            <div class="stat-value">{{ animais_adotados }}</div>
+            <div class="stat-label">Adotados</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value">{{ total_adotantes }}</div>
+            <div class="stat-label">Adotantes Cadastrados</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🎉</div>
+            <div class="stat-value">{{ total_adocoes }}</div>
+            <div class="stat-label">Adoções Realizadas</div>
+        </div>
+    </div>
+
+    <div class="report-section">
+        <h2>Histórico de Adoções</h2>
+        {% if adocoes %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Animal</th>
+                        <th>Adotante</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for adocao in adocoes %}
+                    <tr>
+                        <td>{{ adocao.data_adocao.strftime('%d/%m/%Y %H:%M') if adocao.data_adocao else '-' }}</td>
+                        <td>{{ adocao.animal.nome }}</td>
+                        <td>{{ adocao.adotante.nome }}</td>
+                        <td>{{ adocao.adotante.cpf }}</td>
+                        <td>{{ adocao.adotante.telefone }}</td>
+                        <td><span class="badge badge-success">{{ adocao.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="empty-state">Nenhuma adoção registrada ainda.</p>
+        {% endif %}
+    </div>
+
+    <div class="report-section">
+        <h2>Todos os Animais</h2>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Espécie</th>
+                        <th>Raça</th>
+                        <th>Idade</th>
+                        <th>Localização</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for animal in animais %}
+                    <tr>
+                        <td>{{ animal.nome }}</td>
+                        <td>{{ animal.especie }}</td>
+                        <td>{{ animal.raca or '-' }}</td>
+                        <td>{{ animal.idade or '-' }}</td>
+                        <td>{{ animal.localizacao or '-' }}</td>
+                        <td><span
+                                class="badge badge-{{ 'success' if animal.status == 'disponível' else 'secondary' }}">{{
+                                animal.status }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="report-section">
+        <h2>Todos os Adotantes</h2>
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th>Tipo de Residência</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for adotante in adotantes %}
+                    <tr>
+                        <td>{{ adotante.nome }}</td>
+                        <td>{{ adotante.cpf }}</td>
+                        <td>{{ adotante.telefone }}</td>
+                        <td>{{ adotante.email }}</td>
+                        <td>{{ adotante.tipo_residencia or '-' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

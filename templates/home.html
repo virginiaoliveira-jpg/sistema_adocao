@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Início - LarPet{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Bem-vindo ao LarPet</h1>
+            <p class="hero-subtitle">Conectando corações e transformando vidas através da adoção responsável</p>
+            <p class="hero-description">
+                Somos uma plataforma que conecta ONGs de proteção animal com pessoas que desejam adotar.
+                Juntos, podemos dar um lar cheio de amor para quem mais precisa.
+            </p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('animais_disponiveis') }}" class="btn btn-primary btn-lg">Ver Animais Disponíveis</a>
+                <a href="{{ url_for('cadastrar') }}" class="btn btn-secondary btn-lg">Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features">
+    <div class="container">
+        <h2>Como Funciona</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Busque</h3>
+                <p>Navegue pelos animais disponíveis para adoção e encontre seu novo companheiro</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h3>Conecte-se</h3>
+                <p>Cadastre-se e inicie o processo de adoção do animal que conquistou seu coração</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>Adote</h3>
+                <p>Complete o processo e leve seu novo amigo para casa com amor e responsabilidade</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section">
+    <div class="container">
+        <h2>Você é uma ONG?</h2>
+        <p>Cadastre sua organização e gerencie animais disponíveis para adoção</p>
+        <a href="{{ url_for('cadastrar') }}" class="btn btn-white btn-lg">Cadastrar ONG</a>
+    </div>
+</div>
+{% endblock %}

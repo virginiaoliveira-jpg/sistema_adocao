@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Adoção - {{ animal.nome }} - LarPet{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="adoption-container">
+        <h1>Processo de Adoção</h1>
+        
+        <div class="adoption-info">
+            <div class="animal-details">
+                <h2>Informações do Animal</h2>
+                {% if animal.foto %}
+                <img src="{{ url_for('static', filename='fotos/' + animal.foto) }}" alt="{{ animal.nome }}" class="adoption-photo">
+                {% endif %}
+                <p><strong>Nome:</strong> {{ animal.nome }}</p>
+                <p><strong>Espécie:</strong> {{ animal.especie }}</p>
+                {% if animal.raca %}
+                <p><strong>Raça:</strong> {{ animal.raca }}</p>
+                {% endif %}
+                {% if animal.idade %}
+                <p><strong>Idade:</strong> {{ animal.idade }}</p>
+                {% endif %}
+                {% if animal.localizacao %}
+                <p><strong>Localização:</strong> {{ animal.localizacao }}</p>
+                {% endif %}
+                {% if animal.vacinacao %}
+                <p><strong>Vacinação:</strong> {{ animal.vacinacao }}</p>
+                {% endif %}
+            </div>
+
+            <div class="adopter-details">
+                <h2>Seus Dados</h2>
+                <p><strong>Nome:</strong> {{ adotante.nome }}</p>
+                <p><strong>CPF:</strong> {{ adotante.cpf }}</p>
+                <p><strong>Telefone:</strong> {{ adotante.telefone }}</p>
+                <p><strong>E-mail:</strong> {{ adotante.email }}</p>
+                <p><strong>Endereço:</strong> {{ adotante.endereco }}</p>
+            </div>
+        </div>
+
+        <div class="adoption-form">
+            <h2>Confirmar Adoção</h2>
+            <form method="POST" action="{{ url_for('adocao', animal_id=animal.id) }}">
+                <div class="form-group">
+                    <label for="motivo_final">Por que você deseja adotar {{ animal.nome }}?</label>
+                    <textarea id="motivo_final" name="motivo_final" rows="4" class="form-control" 
+                              placeholder="Conte-nos sobre sua motivação para adotar este animal..." required></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" name="responsabilidade" value="sim" required>
+                        <span>Declaro que estou ciente das responsabilidades de ter um animal e me comprometo a 
+                        cuidar de {{ animal.nome }} com amor, carinho e respeito, garantindo alimentação adequada, 
+                        cuidados veterinários e um lar seguro.</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg">Confirmar Adoção</button>
+                    <a href="{{ url_for('animais_disponiveis') }}" class="btn btn-secondary btn-lg">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro - LarPet{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="container">
+        <div class="auth-box">
+            <h2>Cadastro de Usuário</h2>
+            <form method="POST" action="{{ url_for('cadastrar') }}">
+                <!-- Tipo de Cadastro -->
+                <div class="form-group">
+                    <label for="tipo">Tipo de Cadastro *</label>
+                    <select id="tipo" name="tipo" required class="form-control" onchange="toggleFields()">
+                        <option value="">Selecione...</option>
+                        <option value="Adotante">Adotante</option>
+                        <option value="ONG">ONG</option>
+                    </select>
+                </div>
+
+                <!-- Campos comuns -->
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha *</label>
+                    <input type="password" id="senha" name="senha" required class="form-control">
+                </div>
+
+                <!-- Campos Adotante -->
+                <div id="campos-adotante" style="display:none;">
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" id="telefone" name="telefone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" id="endereco" name="endereco" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de Nascimento</label>
+                        <input type="date" id="data_nascimento" name="data_nascimento" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_residencia">Tipo de Residência</label>
+                        <select id="tipo_residencia" name="tipo_residencia" class="form-control">
+                            <option value="">Selecione...</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Sítio/Chácara">Sítio/Chácara</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="outros_animais">Possui outros animais?</label>
+                        <select id="outros_animais" name="outros_animais" class="form-control">
+                            <option value="">Selecione...</option>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="motivo_adocao">Por que deseja adotar?</label>
+                        <textarea id="motivo_adocao" name="motivo_adocao" rows="3" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <!-- Campos ONG -->
+                <div id="campos-ong" style="display:none;">
+                    <div class="form-group">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" id="cnpj" name="cnpj" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="razao_social">Razão Social</label>
+                        <input type="text" id="razao_social" name="razao_social" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone_ong">Telefone</label>
+                        <input type="text" id="telefone_ong" name="telefone_ong" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco_ong">Endereço</label>
+                        <input type="text" id="endereco_ong" name="endereco_ong" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="responsavel_nome">Nome do Responsável Legal</label>
+                        <input type="text" id="responsavel_nome" name="responsavel_nome" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="responsavel_cpf">CPF do Responsável</label>
+                        <input type="text" id="responsavel_cpf" name="responsavel_cpf" class="form-control">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+
+                <!-- Aviso no final do formulário -->
+                <div class="notice">
+                    🐾 <strong>Aviso:</strong> Adote com consciência e sabedoria!  
+                    Leve RG, CPF e comprovante de residência ao adotar um animalzinho.
+                </div>
+
+                <p class="auth-footer">
+                    Já tem conta? <a href="{{ url_for('login') }}">Faça login aqui</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleFields() {
+    const tipo = document.getElementById('tipo').value;
+    const camposAdotante = document.getElementById('campos-adotante');
+    const camposOng = document.getElementById('campos-ong');
+
+    if (tipo === 'Adotante') {
+        camposAdotante.style.display = 'block';
+        camposOng.style.display = 'none';
+    } else if (tipo === 'ONG') {
+        camposAdotante.style.display = 'none';
+        camposOng.style.display = 'block';
+    } else {
+        camposAdotante.style.display = 'none';
+        camposOng.style.display = 'none';
+    }
+}
+
+window.onload = toggleFields;
+</script>
+
+<style>
+.auth-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+.auth-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.btn-block {
+    width: 100%;
+    padding: 10px;
+}
+.auth-footer {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Aviso inferior */
+.notice {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+</style>
+{% endblock %}

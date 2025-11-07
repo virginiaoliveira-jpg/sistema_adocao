@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Adicionar Animal - LarPet{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Adicionar Novo Animal</h1>
+    <form action="{{ url_for('add_animal') }}" method="POST" enctype="multipart/form-data" class="mt-3">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" id="nome" name="nome" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="especie" class="form-label">Espécie:</label>
+            <input type="text" id="especie" name="especie" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="raca" class="form-label">Raça:</label>
+            <input type="text" id="raca" name="raca" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="idade" class="form-label">Idade:</label>
+            <input type="number" id="idade" name="idade" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="localizacao" class="form-label">Localização:</label>
+            <input type="text" id="localizacao" name="localizacao" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="vacinacao" class="form-label">Vacinação:</label>
+            <input type="text" id="vacinacao" name="vacinacao" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status:</label>
+            <select id="status" name="status" class="form-select">
+                <option value="disponível">Disponível</option>
+                <option value="adotado">Adotado</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto:</label>
+            <input type="file" id="foto" name="foto" class="form-control" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Animal</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerenciar Adotantes - LarPet{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1>Gerenciar Adotantes</h1>
+        <button onclick="showAddForm()" class="btn btn-primary">+ Adicionar Adotante</button>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <!-- Formulário de Adotante -->
+    <div id="form-container" style="display: none;">
+        <h3 id="form-title">Cadastrar Novo Adotante</h3>
+        <form id="adotante-form" action="{{ url_for('add_adotante') }}" method="POST">
+            <div class="mb-3">
+                <label>Nome:</label>
+                <input type="text" name="nome" id="nome" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>CPF:</label>
+                <input type="text" name="cpf" id="cpf" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Telefone:</label>
+                <input type="text" name="telefone" id="telefone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Email:</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Endereço:</label>
+                <input type="text" name="endereco" id="endereco" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Data de Nascimento:</label>
+                <input type="date" name="data_nascimento" id="data_nascimento" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Tipo de Residência:</label>
+                <input type="text" name="tipo_residencia" id="tipo_residencia" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Possui outros animais?</label>
+                <input type="text" name="outros_animais" id="outros_animais" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Motivo da adoção:</label>
+                <textarea name="motivo_adocao" id="motivo_adocao" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="button" class="btn btn-secondary" onclick="hideAddForm()">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- Lista de Adotantes -->
+    <div class="row mt-4">
+        {% for adotante in adotantes %}
+        <div class="col-md-4 mb-3">
+            <div class="card p-3">
+                <h5>{{ adotante.nome }}</h5>
+                <p><strong>CPF:</strong> {{ adotante.cpf }}</p>
+                <p><strong>Telefone:</strong> {{ adotante.telefone }}</p>
+                <p><strong>Email:</strong> {{ adotante.email }}</p>
+                <p><strong>Endereço:</strong> {{ adotante.endereco }}</p>
+                <a href="{{ url_for('edit_adotante', id=adotante.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{{ url_for('delete_adotante', id=adotante.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')">Excluir</a>
+            </div>
+        </div>
+        {% else %}
+        <p>Nenhum adotante cadastrado ainda.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+function showAddForm() {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-title').textContent = 'Cadastrar Novo Adotante';
+    document.getElementById('adotante-form').action = "{{ url_for('add_adotante') }}";
+}
+function hideAddForm() {
+    document.getElementById('form-container').style.display = 'none';
+}
+</script>
+
+{% if adotante_edit %}
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    const formContainer = document.getElementById('form-container');
+    const formTitle = document.getElementById('form-title');
+    const adotanteForm = document.getElementById('adotante-form');
+    if (formContainer && formTitle && adotanteForm) {
+        formContainer.style.display = 'block';
+        formTitle.textContent = 'Editar Adotante';
+        adotanteForm.action = "{{ url_for('edit_adotante', id=adotante_edit.id) }}";
+        const campos = {
+            nome: '{{ adotante_edit.nome | escapejs }}',
+            cpf: '{{ adotante_edit.cpf | escapejs }}',
+            telefone: '{{ adotante_edit.telefone | escapejs }}',
+            email: '{{ adotante_edit.email | escapejs }}',
+            endereco: '{{ adotante_edit.endereco | escapejs }}',
+            data_nascimento: '{{ adotante_edit.data_nascimento or "" }}',
+            tipo_residencia: '{{ adotante_edit.tipo_residencia or "" }}',
+            outros_animais: '{{ adotante_edit.outros_animais or "" | escapejs }}',
+            motivo_adocao: '{{ adotante_edit.motivo_adocao or "" | escapejs }}'
+        };
+        for (let id in campos) {
+            const el = document.getElementById(id);
+            if (el) el.value = campos[id];
+        }
+    }
+});
+</script>
+{% endif %}
+{% endblock %}
