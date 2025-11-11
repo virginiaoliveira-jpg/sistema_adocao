@@ -49,9 +49,7 @@ sistema_adocao/
 | ℹ️ **Sobre** | Página de documentação e informações sobre o projeto. |
 
 ---
-
-
-## 📊 Fluxograma do Sistema
+📊 **Fluxograma do Sistema**
 
 ```mermaid
 flowchart TD
