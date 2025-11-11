@@ -12,22 +12,25 @@ O projeto conecta ONGs, protetores e adotantes em uma única plataforma, permiti
 do projeto, as principais abas do sistema e o fluxo geral de navegação.
 
 🧩 Estrutura do Projeto
+
 sistema_adocao/
+
 │
-├── app.py                # Arquivo principal do sistema Flask
-├── database.db           # Banco de dados SQLite
+├── app.py                 # Arquivo principal do sistema Flask
+├── database.db               # Banco de dados SQLite
 │
-├── static/               # Arquivos estáticos (CSS, JS, imagens)
+├── static/                   # Arquivos estáticos (CSS, JS, imagens)
 │   ├── css/
 │   ├── js/
 │   └── images/
 │
-└── templates/            # Páginas HTML (Jinja2)
+└── templates/                     # Páginas HTML (Jinja2)
     ├── base.html
     ├── login.html
     ├── cadastro.html
     ├── animais.html
     └── sobre.html
+
 
 🌐 Principais Abas do Sistema
 Aba	Descrição
