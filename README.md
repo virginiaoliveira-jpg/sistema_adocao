@@ -19,21 +19,21 @@ Este guia apresenta o funcionamento do projeto, as principais abas do sistema e 
 ## 🧩 Estrutura do Projeto
 
 sistema_adocao/
-│
-├── app.py # Arquivo principal do sistema Flask
-├── database.db # Banco de dados SQLite
-│
-├── static/ # Arquivos estáticos (CSS, JS, imagens)
-│ ├── css/
-│ ├── js/
-│ └── images/
-│
-└── templates/ # Páginas HTML (Jinja2)
-├── base.html
-├── login.html
-├── cadastro.html
-├── animais.html
-└── sobre.html
+    │
+    ├── app.py # Arquivo principal do sistema Flask
+    ├── database.db # Banco de dados SQLite
+    │
+    ├── static/ # Arquivos estáticos (CSS, JS, imagens)
+    │ ├── css/
+    │ ├── js/
+    │ └── images/
+    │
+    └── templates/ # Páginas HTML (Jinja2)
+    ├── base.html
+    ├── login.html
+    ├── cadastro.html
+    ├── animais.html
+    └── sobre.html
 
 ---
 
@@ -61,6 +61,7 @@ flowchart TD
     E --> F[Solicitar Adoção]
     F --> G[Confirmação de Adoção]
     G --> H[Fim]
+
 ⚙️ Tecnologias Utilizadas
 🐍 Python (Flask)
 💾 SQLite
@@ -69,3 +70,36 @@ flowchart TD
 
 🎯 Objetivo
 Promover a adoção consciente de animais, tornando o processo mais acessível e eficiente para ONGs, protetores e adotantes.
+| Nome                  | Função                   |
+| --------------------- | ------------------------ |
+| **Virginia Oliveira** | Apresentação, Front-end  |
+| **Sofia Marques**     | Apresentação, Front-end  |
+| **Letícia Rodrigues** | Equipe de Apoio          |
+| **Ana Julia**         | Banco de Dados           |
+| **Gabriel Bonfim**    | Banco de Dados, Back-end |
+
+🚀 Executar o Projeto
+🔧 Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+Git
+Tudo que estiver listado no requirements.txt
+Um editor de código (como o VSCode)
+
+▶️ Como Rodar o Projeto
+# 1️⃣ Clone o repositório
+git clone https://github.com/virginiaoliveira-jpg/sistema_adocao.git
+
+# 2️⃣ Acesse a pasta do projeto
+cd sistema_adocao
+
+# 3️⃣ Instale as dependências
+pip install -r requirements.txt
+
+# 4️⃣ Execute o sistema
+python app.py
+
+🌐 Repositório Oficial
+
+📎 https://github.com/virginiaoliveira-jpg/sistema_adocao
