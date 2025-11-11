@@ -51,7 +51,6 @@ sistema_adocao/
 ---
 📊 **Fluxograma do Sistema**
 
-```mermaid
 flowchart TD
     A[Início] --> B[Login ou Cadastro]
     B --> C[Página Inicial]
