@@ -49,17 +49,7 @@ sistema_adocao/
 | ℹ️ **Sobre** | Página de documentação e informações sobre o projeto. |
 
 ---
-📊 **Fluxograma do Sistema**
 
-flowchart TD
-    A[Início] --> B[Login ou Cadastro]
-    B --> C[Página Inicial]
-    C --> D[Gerenciar Animais]
-    C --> E[Visualizar Animais para Adoção]
-    E --> F[Solicitar Adoção]
-    F --> G[Confirmação de Adoção]
-    G --> H[Fim]
-💡 Fluxo: Login → Cadastro → Página Inicial → Gerenciar Animais → Adoção
 
 ⚙️ Tecnologias Utilizadas
 🐍 Python (Flask)
