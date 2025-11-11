@@ -60,6 +60,7 @@ flowchart TD
     E --> F[Solicitar Adoção]
     F --> G[Confirmação de Adoção]
     G --> H[Fim]
+💡 Fluxo: Login → Cadastro → Página Inicial → Gerenciar Animais → Adoção
 
 ⚙️ Tecnologias Utilizadas
 🐍 Python (Flask)
