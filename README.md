@@ -1,46 +1,58 @@
-🐾 Guia LarPet – Sistema de Adoção de Animais
+# 🐾 Guia **LarPet** – Sistema de Adoção de Animais
 
-Versão: 1.0
-Linguagem: Python (Flask)
-Plataforma: Web
-Repositório: github.com/virginiaoliveira-jpg/sistema_adocao
+**Versão:** 1.0  
+**Linguagem:** Python (Flask)  
+**Plataforma:** Web  
+**Repositório:** [github.com/virginiaoliveira-jpg/sistema_adocao](https://github.com/virginiaoliveira-jpg/sistema_adocao)
 
-📘 Introdução
+---
 
-O LarPet é um sistema web desenvolvido em Python com o framework Flask, criado para facilitar o processo de adoção de animais de forma organizada, acessível e segura.
-O projeto conecta ONGs, protetores e adotantes em uma única plataforma, permitindo o cadastro, gerenciamento e acompanhamento de adoções.Este guia apresenta o funcionamento
-do projeto, as principais abas do sistema e o fluxo geral de navegação.
+## 📘 Introdução
 
-🧩 Estrutura do Projeto
+O **LarPet** é um sistema web desenvolvido em **Python com o framework Flask**, criado para facilitar o processo de **adoção de animais** de forma organizada, acessível e segura.  
+O projeto conecta **ONGs, protetores e adotantes** em uma única plataforma, permitindo o **cadastro, gerenciamento e acompanhamento de adoções**.
+
+Este guia apresenta o funcionamento do projeto, as principais abas do sistema e o fluxo geral de navegação.
+
+---
+
+## 🧩 Estrutura do Projeto
 
 sistema_adocao/
-
 │
-├── app.py                 # Arquivo principal do sistema Flask
-├── database.db               # Banco de dados SQLite
+├── app.py # Arquivo principal do sistema Flask
+├── database.db # Banco de dados SQLite
 │
-├── static/                   # Arquivos estáticos (CSS, JS, imagens)
-│   ├── css/
-│   ├── js/
-│   └── images/
+├── static/ # Arquivos estáticos (CSS, JS, imagens)
+│ ├── css/
+│ ├── js/
+│ └── images/
 │
-└── templates/                     # Páginas HTML (Jinja2)
-    ├── base.html
-    ├── login.html
-    ├── cadastro.html
-    ├── animais.html
-    └── sobre.html
+└── templates/ # Páginas HTML (Jinja2)
+├── base.html
+├── login.html
+├── cadastro.html
+├── animais.html
+└── sobre.html
 
+---
 
-🌐 Principais Abas do Sistema
-Aba	Descrição
-🏠 Página Inicial	Apresenta o projeto e seus objetivos.
-🔐 Login	Permite que usuários, ONGs ou administradores acessem o sistema.
-📝 Cadastro	Criação de novas contas de usuário ou administrador.
-🐶 Gerenciar Animais	Aba exclusiva para cadastrar, editar ou remover animais disponíveis para adoção.
-💌 Adoções	Exibe animais adotados e informações sobre os adotantes.
-ℹ️ Sobre	Página de documentação e informações sobre o projeto.
-📊 Fluxograma do Sistema
+## 🌐 Principais Abas do Sistema
+
+| Aba | Descrição |
+|------|------------|
+| 🏠 **Página Inicial** | Apresenta o projeto e seus objetivos. |
+| 🔐 **Login** | Permite que usuários, ONGs ou administradores acessem o sistema. |
+| 📝 **Cadastro** | Criação de novas contas de usuário ou administrador. |
+| 🐶 **Gerenciar Animais** | Aba exclusiva para cadastrar, editar ou remover animais disponíveis para adoção. |
+| 💌 **Adoções** | Exibe animais adotados e informações sobre os adotantes. |
+| ℹ️ **Sobre** | Página de documentação e informações sobre o projeto. |
+
+---
+
+## 📊 Fluxograma do Sistema
+
+```mermaid
 flowchart TD
     A[Início] --> B[Login ou Cadastro]
     B --> C[Página Inicial]
@@ -49,28 +61,11 @@ flowchart TD
     E --> F[Solicitar Adoção]
     F --> G[Confirmação de Adoção]
     G --> H[Fim]
-
-
-💡 Fluxo: Login → Cadastro → Página Inicial → Gerenciar Animais → Adoção
 ⚙️ Tecnologias Utilizadas
 🐍 Python (Flask)
 💾 SQLite
 🖥️ HTML, CSS e JavaScript
 🎨 Bootstrap 5
+
 🎯 Objetivo
-
 Promover a adoção consciente de animais, tornando o processo mais acessível e eficiente para ONGs, protetores e adotantes.
-
-👥 Equipe
-
-Virginia Oliveira - Apresentação, Front-end
-Sofia Marques - Apresentação, Front-end
-Leticia Rodrigues - Equipe de apoio
-Ana Julia - Banco de Dados
-Gabriel Bonfim - Banco de Dados, Back-end
-
-Colaboradores e equipe de apoio
-
-🌐 Repositório Oficial
-
-📎 https://github.com/virginiaoliveira-jpg/sistema_adocao
