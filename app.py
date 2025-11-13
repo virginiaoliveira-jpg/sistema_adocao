@@ -131,24 +131,34 @@ def cadastrar():
         email = request.form.get('email')
         senha = request.form.get('senha')
         tipo = request.form.get('tipo')
-        
+
+        # --- Verificação de campos obrigatórios ---
         if not nome or not email or not senha or not tipo:
             flash('Por favor, preencha todos os campos obrigatórios.', 'error')
             return redirect(url_for('cadastrar'))
-        
+
+        # --- Validação de senha forte ---
+        import re
+        if not re.match(r'^(?=.*[A-Z]).{7,}$', senha):
+            flash('A senha deve ter pelo menos 7 caracteres e conter uma letra maiúscula.', 'error')
+            return redirect(url_for('cadastrar'))
+
+        # --- Verificação se o e-mail já existe ---
         if Usuario.query.filter_by(email=email).first():
             flash('Este e-mail já está cadastrado.', 'error')
             return redirect(url_for('cadastrar'))
-        
+
+        # --- Criptografia da senha ---
         senha_hash = generate_password_hash(senha)
-        
+
         novo_usuario = Usuario(
             nome=nome,
             email=email,
             senha=senha_hash,
             tipo=tipo
         )
-        
+
+        # --- Dados específicos de cada tipo ---
         if tipo == 'Adotante':
             novo_usuario.cpf = request.form.get('cpf')
             novo_usuario.telefone = request.form.get('telefone')
@@ -157,7 +167,7 @@ def cadastrar():
             novo_usuario.tipo_residencia = request.form.get('tipo_residencia')
             novo_usuario.outros_animais = request.form.get('outros_animais')
             novo_usuario.motivo_adocao = request.form.get('motivo_adocao')
-            
+
             adotante = Adotante(
                 nome=nome,
                 cpf=novo_usuario.cpf,
@@ -170,7 +180,7 @@ def cadastrar():
                 motivo_adocao=novo_usuario.motivo_adocao
             )
             db.session.add(adotante)
-        
+
         elif tipo == 'ONG':
             novo_usuario.cnpj = request.form.get('cnpj')
             novo_usuario.razao_social = request.form.get('razao_social')
@@ -178,18 +188,20 @@ def cadastrar():
             novo_usuario.endereco = request.form.get('endereco_ong')
             novo_usuario.responsavel_nome = request.form.get('responsavel_nome')
             novo_usuario.responsavel_cpf = request.form.get('responsavel_cpf')
-        
+
+        # --- Salvando no banco ---
         db.session.add(novo_usuario)
         db.session.commit()
-        
+
         if tipo == 'Adotante':
             adotante.usuario_id = novo_usuario.id
             db.session.commit()
-        
+
         flash('Cadastro realizado com sucesso! Faça login para continuar.', 'success')
         return redirect(url_for('login'))
-    
+
     return render_template('cadastrar.html')
+
 
 @app.route('/animais')
 def animais():

@@ -31,7 +31,12 @@
 
                 <div class="form-group">
                     <label for="senha">Senha *</label>
-                    <input type="password" id="senha" name="senha" required class="form-control">
+                    <input type="password" id="senha" name="senha" required class="form-control"
+                        pattern="^(?=.*[A-Z]).{7,}$"
+                        title="A senha deve ter pelo menos 7 caracteres e conter uma letra maiúscula">
+                    <small class="text-muted">
+                        A senha precisa ter no mínimo 7 caracteres e pelo menos uma letra maiúscula.
+                    </small>
                 </div>
 
                 <!-- Campos Adotante -->
@@ -107,7 +112,7 @@
 
                 <!-- Aviso no final do formulário -->
                 <div class="notice">
-                    🐾 <strong>Aviso:</strong> Adote com consciência e sabedoria!  
+                    🐾 <strong>Aviso:</strong> Adote com consciência e sabedoria!
                     Leve RG, CPF e comprovante de residência ao adotar um animalzinho.
                 </div>
 
@@ -122,67 +127,72 @@
 
 {% block scripts %}
 <script>
-function toggleFields() {
-    const tipo = document.getElementById('tipo').value;
-    const camposAdotante = document.getElementById('campos-adotante');
-    const camposOng = document.getElementById('campos-ong');
+    function toggleFields() {
+        const tipo = document.getElementById('tipo').value;
+        const camposAdotante = document.getElementById('campos-adotante');
+        const camposOng = document.getElementById('campos-ong');
 
-    if (tipo === 'Adotante') {
-        camposAdotante.style.display = 'block';
-        camposOng.style.display = 'none';
-    } else if (tipo === 'ONG') {
-        camposAdotante.style.display = 'none';
-        camposOng.style.display = 'block';
-    } else {
-        camposAdotante.style.display = 'none';
-        camposOng.style.display = 'none';
+        if (tipo === 'Adotante') {
+            camposAdotante.style.display = 'block';
+            camposOng.style.display = 'none';
+        } else if (tipo === 'ONG') {
+            camposAdotante.style.display = 'none';
+            camposOng.style.display = 'block';
+        } else {
+            camposAdotante.style.display = 'none';
+            camposOng.style.display = 'none';
+        }
     }
-}
 
-window.onload = toggleFields;
+    window.onload = toggleFields;
 </script>
 
 <style>
-.auth-container {
-    display: flex;
-    justify-content: center;
-    padding: 50px 0;
-}
-.auth-box {
-    width: 100%;
-    max-width: 500px;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.form-group {
-    margin-bottom: 15px;
-}
-.form-control {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.btn-block {
-    width: 100%;
-    padding: 10px;
-}
-.auth-footer {
-    margin-top: 15px;
-    text-align: center;
-}
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        padding: 50px 0;
+    }
 
-/* Aviso inferior */
-.notice {
-    background-color: #fff3cd;
-    color: #856404;
-    border: 1px solid #ffeeba;
-    padding: 15px 20px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    margin-top: 20px;
-}
+    .auth-box {
+        width: 100%;
+        max-width: 500px;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .btn-block {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .auth-footer {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    /* Aviso inferior */
+    .notice {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 15px 20px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-top: 20px;
+    }
 </style>
 {% endblock %}
