@@ -1,14 +1,19 @@
+import os
 from flask import Flask, render_template, redirect, url_for, request, flash, session, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-import os
 from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SESSION_SECRET', 'chave_secreta_desenvolvimento')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///larpet.db'
+
+# 🔧 Caminho correto do banco SQLite dentro da pasta instance
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(basedir, 'instance', 'database.db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/fotos'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
