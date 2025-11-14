@@ -36,10 +36,10 @@ migrations/
 Thumbs.db
 
 # Uploads
-static/fotos/*.jpg
-static/fotos/*.jpeg
-static/fotos/*.png
-static/fotos/*.gif
+static/uploads/*.jpg
+static/uploads/*.jpeg
+static/uploads/*.png
+static/uploads/*.gif
 !static/logo.png
 
 # Logs

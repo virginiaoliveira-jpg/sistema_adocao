@@ -13,51 +13,56 @@
 <div class="container">
     <div class="search-box">
         <form method="GET" action="{{ url_for('animais_disponiveis') }}">
-            <input type="text" name="q" placeholder="Buscar por espécie, raça, nome ou localização..." 
-                   value="{{ busca if busca else '' }}" class="form-control">
+            <input type="text" name="q" placeholder="Buscar por espécie, raça, nome ou localização..."
+                value="{{ busca if busca else '' }}" class="form-control">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
     </div>
 
     {% if animais %}
-        <div class="animals-grid">
-            {% for animal in animais %}
-            <div class="animal-card">
-                {% if animal.foto %}
-                <img src="{{ url_for('static', filename='fotos/' + animal.foto) }}" alt="{{ animal.nome }}">
-                {% else %}
-                <div class="animal-no-photo">
-                    <span>📷</span>
-                    <p>Sem foto</p>
-                </div>
-                {% endif %}
-                <div class="animal-info">
-                    <h3>{{ animal.nome }}</h3>
-                    <p><strong>Espécie:</strong> {{ animal.especie }}</p>
-                    {% if animal.raca %}
-                    <p><strong>Raça:</strong> {{ animal.raca }}</p>
-                    {% endif %}
-                    {% if animal.idade %}
-                    <p><strong>Idade:</strong> {{ animal.idade }}</p>
-                    {% endif %}
-                    {% if animal.localizacao %}
-                    <p><strong>Localização:</strong> {{ animal.localizacao }}</p>
-                    {% endif %}
-                    {% if animal.vacinacao %}
-                    <p><strong>Vacinação:</strong> {{ animal.vacinacao }}</p>
-                    {% endif %}
-                    <a href="{{ url_for('adocao', animal_id=animal.id) }}" class="btn btn-primary btn-block">Adotar</a>
-                </div>
+    <div class="animals-grid">
+        {% for animal in animais %}
+        <div class="animal-card">
+            {% if animal.foto %}
+            <img src="{{ url_for('static', filename='uploads/' + animal.foto) }}" alt="{{ animal.nome }}">
+            {% else %}
+            <div class="animal-no-photo">
+                <span>📷</span>
+                <p>Sem foto</p>
             </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="empty-state">
-            <p>🐾 Nenhum animal disponível no momento.</p>
-            {% if busca %}
-            <p>Tente uma busca diferente.</p>
             {% endif %}
+            <div class="animal-info">
+                <h3>{{ animal.nome }}</h3>
+                <p><strong>Espécie:</strong> {{ animal.especie }}</p>
+
+                {% if animal.raca %}
+                <p><strong>Raça:</strong> {{ animal.raca }}</p>
+                {% endif %}
+
+                {% if animal.idade %}
+                <p><strong>Idade:</strong> {{ animal.idade }}</p>
+                {% endif %}
+
+                {% if animal.localizacao %}
+                <p><strong>Localização:</strong> {{ animal.localizacao }}</p>
+                {% endif %}
+
+                {% if animal.vacinacao %}
+                <p><strong>Vacinação:</strong> {{ animal.vacinacao }}</p>
+                {% endif %}
+
+                <a href="{{ url_for('adocao', animal_id=animal.id) }}" class="btn btn-primary btn-block">Adotar</a>
+            </div>
         </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>🐾 Nenhum animal disponível no momento.</p>
+        {% if busca %}
+        <p>Tente uma busca diferente.</p>
+        {% endif %}
+    </div>
     {% endif %}
 </div>
 {% endblock %}

@@ -6,12 +6,13 @@
 <div class="container">
     <div class="adoption-container">
         <h1>Processo de Adoção</h1>
-        
+
         <div class="adoption-info">
             <div class="animal-details">
                 <h2>Informações do Animal</h2>
                 {% if animal.foto %}
-                <img src="{{ url_for('static', filename='fotos/' + animal.foto) }}" alt="{{ animal.nome }}" class="adoption-photo">
+                <img src="{{ url_for('static', filename='uploads/' + animal.foto) }}" alt="{{ animal.nome }}"
+                    class="adoption-photo">
                 {% endif %}
                 <p><strong>Nome:</strong> {{ animal.nome }}</p>
                 <p><strong>Espécie:</strong> {{ animal.especie }}</p>
@@ -44,16 +45,16 @@
             <form method="POST" action="{{ url_for('adocao', animal_id=animal.id) }}">
                 <div class="form-group">
                     <label for="motivo_final">Por que você deseja adotar {{ animal.nome }}?</label>
-                    <textarea id="motivo_final" name="motivo_final" rows="4" class="form-control" 
-                              placeholder="Conte-nos sobre sua motivação para adotar este animal..." required></textarea>
+                    <textarea id="motivo_final" name="motivo_final" rows="4" class="form-control"
+                        placeholder="Conte-nos sobre sua motivação para adotar este animal..." required></textarea>
                 </div>
 
                 <div class="form-group checkbox-group">
                     <label>
                         <input type="checkbox" name="responsabilidade" value="sim" required>
-                        <span>Declaro que estou ciente das responsabilidades de ter um animal e me comprometo a 
-                        cuidar de {{ animal.nome }} com amor, carinho e respeito, garantindo alimentação adequada, 
-                        cuidados veterinários e um lar seguro.</span>
+                        <span>Declaro que estou ciente das responsabilidades de ter um animal e me comprometo a
+                            cuidar de {{ animal.nome }} com amor, carinho e respeito, garantindo alimentação adequada,
+                            cuidados veterinários e um lar seguro.</span>
                     </label>
                 </div>
 
