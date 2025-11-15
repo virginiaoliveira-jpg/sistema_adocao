@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar">
-        <div class="container">
+        <div class="container navbar-container">
             <div class="nav-brand">
                 <img src="{{ url_for('static', filename='logo.png') }}" alt="LarPet Logo" class="logo">
-                <h1>LarPet</h1>
+                <h1 class="site-title">LarPet</h1>
             </div>
+
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}">Início</a></li>
                 <li><a href="{{ url_for('animais_disponiveis') }}">Animais Disponíveis</a></li>
+
                 {% if session.usuario_id %}
-                    {% if session.tipo == 'ONG' %}
-                        <li><a href="{{ url_for('animais') }}">Gerenciar Animais</a></li>
-                        <li><a href="{{ url_for('adotantes') }}">Gerenciar Adotantes</a></li>
-                        <li><a href="{{ url_for('relatorios') }}">Relatórios</a></li>
-                    {% endif %}
-                    <li><span class="user-name">Olá, {{ session.nome }}</span></li>
-                    <li><a href="{{ url_for('logout') }}" class="btn-logout">Sair</a></li>
+                {% if session.tipo == 'ONG' %}
+                <li><a href="{{ url_for('animais') }}">Gerenciar Animais</a></li>
+                <li><a href="{{ url_for('adotantes') }}">Gerenciar Adotantes</a></li>
+                <li><a href="{{ url_for('relatorios') }}">Relatórios</a></li>
+                {% endif %}
+
+                <li><span class="user-name">Olá, {{ session.nome }}</span></li>
+                <li><a href="{{ url_for('logout') }}" class="btn-logout">Sair</a></li>
+
                 {% else %}
-                    <li><a href="{{ url_for('login') }}" class="btn-primary">Entrar</a></li>
-                    <li><a href="{{ url_for('cadastrar') }}" class="btn-secondary">Cadastrar</a></li>
+                <li><a href="{{ url_for('login') }}" class="btn-primary">Entrar</a></li>
+                <li><a href="{{ url_for('cadastrar') }}" class="btn-secondary">Cadastrar</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -37,16 +44,16 @@
 
     <main>
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="container">
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                            {{ message }}
-                            <button onclick="this.parentElement.style.display='none'" class="alert-close">&times;</button>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
+        {% if messages %}
+        <div class="container">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+                <button onclick="this.parentElement.style.display='none'" class="alert-close">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% endwith %}
 
         {% block content %}{% endblock %}
@@ -60,11 +67,11 @@
     </footer>
 
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             const alerts = document.querySelectorAll('.alert');
-            alerts.forEach(function(alert) {
+            alerts.forEach(function (alert) {
                 alert.style.opacity = '0';
-                setTimeout(function() {
+                setTimeout(function () {
                     alert.style.display = 'none';
                 }, 300);
             });
@@ -72,4 +79,5 @@
     </script>
     {% block scripts %}{% endblock %}
 </body>
+
 </html>

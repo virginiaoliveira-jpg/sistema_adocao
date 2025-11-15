@@ -24,25 +24,61 @@
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-20px) rotate(5deg); }
-    50% { transform: translateY(-10px) rotate(-5deg); }
-    75% { transform: translateY(-15px) rotate(3deg); }
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateY(-15px) rotate(3deg);
+    }
 }
 
 @keyframes floatSlow {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-30px); }
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-30px);
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.8; }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(122, 199, 168, 0.4); }
-    50% { box-shadow: 0 0 40px rgba(122, 199, 168, 0.8), 0 0 60px rgba(122, 199, 168, 0.6); }
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(122, 199, 168, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(122, 199, 168, 0.8), 0 0 60px rgba(122, 199, 168, 0.6);
+    }
 }
 
 @keyframes slideInLeft {
@@ -50,6 +86,7 @@
         transform: translateX(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -61,6 +98,7 @@
         transform: translateX(100%);
         opacity: 0;
     }
+
     to {
         transform: translateX(0);
         opacity: 1;
@@ -72,6 +110,7 @@
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -83,6 +122,7 @@
         opacity: 0;
         transform: translateY(-40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -94,6 +134,7 @@
         opacity: 0;
         transform: scale(0.8);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -105,6 +146,7 @@
         opacity: 0;
         transform: rotate(-180deg) scale(0.5);
     }
+
     to {
         opacity: 1;
         transform: rotate(0) scale(1);
@@ -112,31 +154,73 @@
 }
 
 @keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
 }
 
 @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-5deg); }
-    75% { transform: rotate(5deg); }
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-5deg);
+    }
+
+    75% {
+        transform: rotate(5deg);
+    }
 }
 
 @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.1); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.05); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.05);
+    }
 }
 
 body {
@@ -158,7 +242,7 @@ body::before {
     height: 100%;
     top: 0;
     left: 0;
-    background: 
+    background:
         radial-gradient(circle at 20% 50%, rgba(122, 199, 168, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(255, 217, 61, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 40% 20%, rgb(184, 234, 215, 0.15) 0%, transparent 50%);
@@ -248,11 +332,25 @@ body::before {
     animation: fadeInUp 0.6s ease-out backwards;
 }
 
-.nav-menu li:nth-child(1) { animation-delay: 0.1s; }
-.nav-menu li:nth-child(2) { animation-delay: 0.2s; }
-.nav-menu li:nth-child(3) { animation-delay: 0.3s; }
-.nav-menu li:nth-child(4) { animation-delay: 0.4s; }
-.nav-menu li:nth-child(5) { animation-delay: 0.5s; }
+.nav-menu li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.nav-menu li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.nav-menu li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.nav-menu li:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.nav-menu li:nth-child(5) {
+    animation-delay: 0.5s;
+}
 
 .nav-menu a {
     text-decoration: none;
@@ -439,7 +537,7 @@ body::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     animation: float 20s ease-in-out infinite;
 }
 
@@ -556,9 +654,17 @@ body::before {
     animation: scaleIn 0.8s ease-out backwards;
 }
 
-.feature-card:nth-child(1) { animation-delay: 0.1s; }
-.feature-card:nth-child(2) { animation-delay: 0.3s; }
-.feature-card:nth-child(3) { animation-delay: 0.5s; }
+.feature-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
 
 .feature-card::before {
     content: '';
@@ -772,10 +878,21 @@ body::before {
     animation: fadeInUp 0.6s ease-out backwards;
 }
 
-.form-group:nth-child(1) { animation-delay: 0.1s; }
-.form-group:nth-child(2) { animation-delay: 0.2s; }
-.form-group:nth-child(3) { animation-delay: 0.3s; }
-.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.form-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.form-group:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.form-group:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 .form-group label {
     display: block;
@@ -920,10 +1037,21 @@ body::before {
     position: relative;
 }
 
-.animal-card:nth-child(1) { animation-delay: 0.1s; }
-.animal-card:nth-child(2) { animation-delay: 0.2s; }
-.animal-card:nth-child(3) { animation-delay: 0.3s; }
-.animal-card:nth-child(4) { animation-delay: 0.4s; }
+.animal-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animal-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.animal-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.animal-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 .animal-card::before {
     content: '';
@@ -1153,8 +1281,13 @@ body::before {
     animation: scaleIn 0.8s ease-out backwards;
 }
 
-.animal-details:nth-child(1) { animation-delay: 0.1s; }
-.animal-details:nth-child(2) { animation-delay: 0.3s; }
+.animal-details:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.animal-details:nth-child(2) {
+    animation-delay: 0.3s;
+}
 
 .animal-details:hover,
 .adopter-details:hover {
@@ -1253,11 +1386,25 @@ body::before {
     overflow: hidden;
 }
 
-.stat-card:nth-child(1) { animation-delay: 0.1s; }
-.stat-card:nth-child(2) { animation-delay: 0.2s; }
-.stat-card:nth-child(3) { animation-delay: 0.3s; }
-.stat-card:nth-child(4) { animation-delay: 0.4s; }
-.stat-card:nth-child(5) { animation-delay: 0.5s; }
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.stat-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
 
 .stat-card::before {
     content: '';
@@ -1416,6 +1563,7 @@ footer p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -1424,11 +1572,17 @@ footer p {
         transition-duration: 0.01ms !important;
     }
 }
-form, input, select, textarea, button {
+
+form,
+input,
+select,
+textarea,
+button {
     pointer-events: auto;
     position: relative;
     z-index: 10;
 }
+
 /* -------------------------
    Seu CSS original aqui
    ------------------------- */
@@ -1436,7 +1590,8 @@ form, input, select, textarea, button {
 /* --- Correções essenciais --- */
 
 /* 1. Inputs e textareas clicáveis */
-input, textarea {
+input,
+textarea {
     cursor: text;
 }
 
@@ -1458,9 +1613,15 @@ input, textarea {
     left: 0;
     animation: slide 2s infinite;
 }
+
 @keyframes slide {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 /* 4. Aviso inferior (opcional) */
@@ -1474,3 +1635,42 @@ input, textarea {
     margin-top: 20px;
 }
 
+/* --- Correção do bug de sobreposição do menu --- */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Afasta os itens do menu */
+.nav-menu {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+/* Deixa mais espaçado e impede que um item empurre o outro */
+.nav-menu li {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Logo e nome mais destacados --- */
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.site-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-left: 10px;
+    color: #2a7a5c;
+    letter-spacing: 1px;
+}
+
+/* Ajuste para não sobrepor se o nome da pessoa for grande */
+.user-name {
+    white-space: nowrap;
+}
