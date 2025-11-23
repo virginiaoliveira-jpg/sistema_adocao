@@ -68,7 +68,8 @@
                 <p><strong>Email:</strong> {{ adotante.email }}</p>
                 <p><strong>Endereço:</strong> {{ adotante.endereco }}</p>
                 <a href="{{ url_for('edit_adotante', id=adotante.id) }}" class="btn btn-warning btn-sm">Editar</a>
-                <a href="{{ url_for('delete_adotante', id=adotante.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza?')">Excluir</a>
+                <a href="{{ url_for('delete_adotante', id=adotante.id) }}" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Tem certeza?')">Excluir</a>
             </div>
         </div>
         {% else %}
@@ -78,43 +79,45 @@
 </div>
 
 <script>
-function showAddForm() {
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('form-title').textContent = 'Cadastrar Novo Adotante';
-    document.getElementById('adotante-form').action = "{{ url_for('add_adotante') }}";
-}
-function hideAddForm() {
-    document.getElementById('form-container').style.display = 'none';
-}
+    function showAddForm() {
+        document.getElementById('form-container').style.display = 'block';
+        document.getElementById('form-title').textContent = 'Cadastrar Novo Adotante';
+        document.getElementById('adotante-form').action = "{{ url_for('add_adotante') }}";
+    }
+    function hideAddForm() {
+        document.getElementById('form-container').style.display = 'none';
+    }
 </script>
 
 {% if adotante_edit %}
 <script>
-window.addEventListener('DOMContentLoaded', function() {
-    const formContainer = document.getElementById('form-container');
-    const formTitle = document.getElementById('form-title');
-    const adotanteForm = document.getElementById('adotante-form');
-    if (formContainer && formTitle && adotanteForm) {
+    window.addEventListener('DOMContentLoaded', function () {
+        const formContainer = document.getElementById('form-container');
+        const formTitle = document.getElementById('form-title');
+        const adotanteForm = document.getElementById('adotante-form');
+
         formContainer.style.display = 'block';
         formTitle.textContent = 'Editar Adotante';
         adotanteForm.action = "{{ url_for('edit_adotante', id=adotante_edit.id) }}";
+
         const campos = {
-            nome: '{{ adotante_edit.nome | escapejs }}',
-            cpf: '{{ adotante_edit.cpf | escapejs }}',
-            telefone: '{{ adotante_edit.telefone | escapejs }}',
-            email: '{{ adotante_edit.email | escapejs }}',
-            endereco: '{{ adotante_edit.endereco | escapejs }}',
-            data_nascimento: '{{ adotante_edit.data_nascimento or "" }}',
-            tipo_residencia: '{{ adotante_edit.tipo_residencia or "" }}',
-            outros_animais: '{{ adotante_edit.outros_animais or "" | escapejs }}',
-            motivo_adocao: '{{ adotante_edit.motivo_adocao or "" | escapejs }}'
+            nome: "{{ adotante_edit.nome }}",
+            cpf: "{{ adotante_edit.cpf }}",
+            telefone: "{{ adotante_edit.telefone }}",
+            email: "{{ adotante_edit.email }}",
+            endereco: "{{ adotante_edit.endereco }}",
+            data_nascimento: "{{ adotante_edit.data_nascimento or '' }}",
+            tipo_residencia: "{{ adotante_edit.tipo_residencia or '' }}",
+            outros_animais: "{{ adotante_edit.outros_animais or '' }}",
+            motivo_adocao: "{{ adotante_edit.motivo_adocao or '' }}"
         };
+
         for (let id in campos) {
             const el = document.getElementById(id);
             if (el) el.value = campos[id];
         }
-    }
-});
+    });
 </script>
 {% endif %}
+
 {% endblock %}
